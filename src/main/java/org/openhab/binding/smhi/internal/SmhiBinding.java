@@ -1,5 +1,6 @@
 package org.openhab.binding.smhi.internal;
 
+import java.util.Date;
 import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.List;
@@ -82,9 +83,20 @@ public class SmhiBinding extends AbstractActiveBinding<SmhiBindingProvider> impl
 										
 					String response = HttpUtil.executeUrl("GET", url, null, null, "application/json", SMHI_TIMEOUT);
 		
-					Gson gson = new GsonBuilder().create();
+					Gson gson = new GsonBuilder()
+						.setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+						.create();
 					SmhiDataList dataList = gson.fromJson(response, SmhiDataList.class);
+					
 					if(dataList != null){
+						
+						List<WeatherData> timeSeries = dataList.timeseries;
+						Date now = new Date();
+						
+						while(timeSeries.get(0).validTime.before(now) && timeSeries.size() > 1){
+							timeSeries.remove(0);
+						}
+						
 						float value = -1;
 						if(parameter.equals(Constants.PARAMETER_TEMPERATURE)){
 							value = dataList.timeseries.get(0).temperature;
@@ -144,6 +156,9 @@ public class SmhiBinding extends AbstractActiveBinding<SmhiBindingProvider> impl
 	}
 	
 	class WeatherData {
+		
+		@SerializedName("validTime")
+		private Date validTime;
 		
 		/** Air pressure in hPa. */
 		@SerializedName("msi")
