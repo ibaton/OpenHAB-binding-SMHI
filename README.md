@@ -5,6 +5,9 @@ A SMHI weather binding for OpenHab.
 
 For installation of the binding, please see [Wiki](https://github.com/openhab/openhab/wiki/Bindings).
 
+##Download
+[org.openhab.binding.smhi-1.6.0.jar](https://drive.google.com/file/d/0B2sLEbuzoWR4aG5POGFzX1lJOGM/edit?usp=sharing)
+
 ##Generic Item Binding Configuration
 
 In order to bind an item to a SMHI requst, you need to add some binding information in your item file.
