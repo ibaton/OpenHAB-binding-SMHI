@@ -12,7 +12,9 @@ The syntax of the configuration is listed bellow:
 
 smhi="latitude:longitude:parameter"
 
-Latitude and latitude for your location can be found using [bing](http://www.bing.com/maps). 
+Latitude and latitude for your location can be found using [bing](http://www.bing.com/maps).
+Latitude must be between 52.50 and 70.75.
+Longitude must be betweem 2.25 and 38.00. 
 
 Valid parameters:
 * *temperature* - Temperature. C.
