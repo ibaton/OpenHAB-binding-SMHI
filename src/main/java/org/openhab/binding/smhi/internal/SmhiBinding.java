@@ -161,7 +161,7 @@ public class SmhiBinding extends AbstractActiveBinding<SmhiBindingProvider> impl
 		private Date validTime;
 		
 		/** Air pressure in hPa. */
-		@SerializedName("msi")
+		@SerializedName("msl")
 		private float airPressure;
 		
 		/** Temperature in Celsius. */
